@@ -10,8 +10,8 @@ where emp_no ='10944';
 -- 전체직원의 다음 정보를 조회하세요. 가장 선임부터 출력이 되도록 하세요. 
 -- 출력은 이름, 성별,  입사일 순서이고 “이름”, “성별”, “입사일로 컬럼 이름을 대체해 보세요.
 select concat (first_name, ' ', last_name) as 이름,
-    gender as 성별,
-    hire_date as 입사일
+gender as 성별,
+hire_date as 입사일
 from employees
 order by hire_date asc;
 
