@@ -47,7 +47,6 @@ order by a.emp_no asc;
 -- 문제4.
 -- 현재, 사원들의 사번, 이름, 매니저 이름, 부서 이름으로 출력해 보세요.
 
-
 select a.emp_no as '사번', concat(a.first_name, ' ', a.last_name) as '이름', manager.mname as '매니저 이름', c.dept_name as '부서'
 from employees a, dept_emp b, departments c, (select concat(a.first_name, ' ', a.last_name) as mname, c.dept_name as md
 												from employees a, dept_manager b, departments c
@@ -59,8 +58,6 @@ where a.emp_no = b.emp_no
 and b.dept_no = c.dept_no
 and c.dept_name = manager.md
 and b.to_date = '9999-01-01';
-
-
 
 -- 문제5.
 -- 현재, 평균연봉이 가장 높은 부서의 사원들의 사번, 이름, 직책, 연봉을 조회하고 연봉 순으로 출력하세요. subquery = 평균연봉이 가장 높은 부서
@@ -82,8 +79,6 @@ where a.emp_no = b.emp_no
                  order by avg(b.salary) desc
 					limit 1)
 order by 연봉 desc;
-
-
 
 -- 문제6.
 -- 평균 연봉이 가장 높은 부서는? 
@@ -118,7 +113,7 @@ order by avg(c.salary) desc limit 1;
 -- 부서이름, 사원이름, 연봉, 매니저 이름, 메니저 연봉 순으로 출력합니다.
 
 
-select a.emp_no as '사번', concat(a.first_name, ' ', a.last_name) as '이름', d.salary as '직원 연봉', manager.매니저이름 as '매니저 이름', c.dept_name as '부서'
+select c.dept_name as '부서이름', concat(a.first_name, ' ', a.last_name) as '사원이름', d.salary as '연봉', manager.매니저이름 as '매니저 이름', manager.매니저연봉   
 from employees a, dept_emp b, departments c, salaries d , (select concat(a.first_name, ' ', a.last_name) as '매니저이름', c.dept_name as '매니저부서', d.salary as '매니저연봉'
 												from employees a, dept_manager b, departments c, salaries d
 											   where a.emp_no = b.emp_no
@@ -137,5 +132,3 @@ and d.to_date = '9999-01-01'
 and b.to_date = '9999-01-01'
 and d.salary>manager.매니저연봉
 order by a.emp_no;
-
-
